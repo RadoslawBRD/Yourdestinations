@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Your destinations</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="wstecz">Return</string>
+    <string name="zapisz">Save</string>
+    <string name="error_cord">Select different localisation</string>
+    <string name="opisnazwa">Label/Desc</string>
+    <string name="usun">Delete</string>
+    <string name="chng_name">Edit</string>
+    <string name="error_save">Problem with saving</string>
+    <string name="noti_removed">Entry deleted</string>
+    <string name="enter_adress">Enter address</string>
+    <string name="settings">Settings</string>
+    <string name="edit_name">Edit</string>
+    <string name="set_lay">Layout</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name ="after_choose">After choosing address</string>
+    <string name="navigation">Navigate</string>
+    <string name="directions">Directions</string>
+
+
+</resources>
