@@ -1,6 +1,5 @@
 package com.rbcode.yourdestinations;
 
-import android.content.Context;
 import android.util.Log;
 
 

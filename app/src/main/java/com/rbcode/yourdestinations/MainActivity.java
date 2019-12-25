@@ -1,9 +1,7 @@
 package com.rbcode.yourdestinations;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 
 import android.content.DialogInterface;
@@ -43,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
     ListViewAdapter adapter;
 
-    //string do ustawień
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         oPerfs = getSharedPreferences("options",MODE_PRIVATE);
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-
-
 
         final ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);

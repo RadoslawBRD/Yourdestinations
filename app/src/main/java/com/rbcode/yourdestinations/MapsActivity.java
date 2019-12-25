@@ -2,9 +2,8 @@ package com.rbcode.yourdestinations;
 
 import androidx.fragment.app.FragmentActivity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -221,7 +220,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         editor.putString("count",String.valueOf(Integer.valueOf(count)));
 
-        editor.commit();
+        editor.apply();
         finish();
     }
 
