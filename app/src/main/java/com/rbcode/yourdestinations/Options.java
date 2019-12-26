@@ -25,9 +25,9 @@ public class Options extends AppCompatActivity {
         mPrefs = getSharedPreferences("test",MODE_PRIVATE);
         oPerfs = getSharedPreferences("options",MODE_PRIVATE);
 
-        if(oPerfs.getString("layout","light")=="dark")
+        if(oPerfs.getString("layout","light").equals("dark"))
             sLayout.setChecked(true);
-        if(oPerfs.getString("mode","lead")=="directions")
+        if(oPerfs.getString("mode","lead").equals("directions"))
             sMode.setChecked(true);
 
         editor = oPerfs.edit();
