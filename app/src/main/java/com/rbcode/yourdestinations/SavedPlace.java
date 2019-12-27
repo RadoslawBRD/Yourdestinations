@@ -1,6 +1,8 @@
 package com.rbcode.yourdestinations;
 
+import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import org.json.JSONArray;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import static android.content.ContentValues.TAG;
 
 public class SavedPlace {
+
     private int id;
     private double lat;
     private double lng;
@@ -51,18 +54,6 @@ public class SavedPlace {
     }
 
 
-    public static ArrayList<SavedPlace> fromJson(JSONArray jsonArray){
-        ArrayList<SavedPlace> places = new ArrayList<SavedPlace>();
-        for(int i=0;i<=jsonArray.length();i++) {
-            try {
-                places.add(new SavedPlace(jsonArray.getJSONObject(i)));
-            } catch (JSONException e){
-                e.printStackTrace();
-        }
-        }
-        return places;
-    }
-
     public void setNazwa(String nazwa) {
         this.nazwa = nazwa;
     }
@@ -90,4 +81,5 @@ public class SavedPlace {
         else
             return adres;
     }
+
 }
