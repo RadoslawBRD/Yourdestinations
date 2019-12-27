@@ -32,6 +32,8 @@ import java.util.Arrays;
 
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     String mode;
@@ -41,8 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
     ListViewAdapter adapter;
 
+    public SharedPreferences getPref(){
+        return mPrefs;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //mPrefs = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
@@ -104,8 +110,23 @@ public class MainActivity extends AppCompatActivity {
                         alert.setPositiveButton(R.string.zapisz, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                savedPlace.setNazwa(input.getText().toString());
-                            }
+                                    JSONObject jplace = new JSONObject();
+                                    try {
+                                        jplace.put("id",savedPlace.getId() );
+                                        jplace.put("nazwa", input.getText().toString());
+                                        jplace.put("adres", savedPlace.getAdres());
+                                        jplace.put("lat", savedPlace.getLat());
+                                        jplace.put("lon", savedPlace.getLng());
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    SharedPreferences.Editor editor = mPrefs.edit();
+                                    editor.putString(String.valueOf(savedPlace.getId()), jplace.toString()); //put new place
+
+                                    editor.apply();
+                                }
                         });
 
                         alert.setNegativeButton(R.string.wstecz, new DialogInterface.OnClickListener() {
@@ -204,4 +225,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
+
+
 }
