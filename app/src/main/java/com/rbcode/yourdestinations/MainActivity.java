@@ -186,12 +186,49 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void add_destination(View view) {
-        Intent intent;
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+        LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
 
-        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+        view = layoutInflater.inflate(R.layout.add_destination_layout,null);
 
-        intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
+        Button bt1 = view.findViewById(R.id.buttonLV);
+        Button bt2 = view.findViewById(R.id.button1LV);
+        Button bt3 = view.findViewById(R.id.button2LV);
+
+        final AlertDialog alertDialog = alert.create();
+
+        bt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("mode","map");
+                startActivity(intent);
+                alertDialog.dismiss();
+            }
+        });
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("mode","place");
+                startActivity(intent);
+                alertDialog.dismiss();
+            }
+        });
+        bt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("mode","car");
+                startActivity(intent);
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.setView(view);
+        alertDialog.show();
     }
 
     @Override

@@ -18,6 +18,9 @@
     <string name ="after_choose">After choosing address</string>
     <string name="navigation">Navigate</string>
     <string name="directions">Directions</string>
+    <string name="choice_map">From map</string>
+    <string name="choice_here">This position</string>
+    <string name ="choice_park">Parked here</string>
 
 
 </resources>

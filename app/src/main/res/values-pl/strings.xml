@@ -19,6 +19,9 @@
     <string name ="after_choose">Po wybraniu adresu</string>
     <string name="navigation">Nawiguj</string>
     <string name="directions">Pokaż trase</string>
+    <string name="choice_map">Z mapy</string>
+    <string name="choice_here">Ta pozycja</string>
+    <string name ="choice_park">Tu zaparkowałem</string>
 
 
 
