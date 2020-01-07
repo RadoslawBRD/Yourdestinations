@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //mPrefs = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
         adapter = new ListViewAdapter(this, arrayList);
         mPrefs = getSharedPreferences("test",MODE_PRIVATE);
@@ -246,7 +247,20 @@ public class MainActivity extends AppCompatActivity {
     public void populate_list(){
         adapter.clear();
         String count = mPrefs.getString("count","0");
-        JSONObject array;
+        JSONObject array = new JSONObject();
+        try {
+            array = new JSONObject(mPrefs.getString("mode","error"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            if(!(array.getString("mode")=="error"))
+               adapter.add(new SavedPlace(array));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         for(int i=0;i<=Integer.valueOf(count);i++){
             Log.d(TAG, "populate_list: num:"+i+"|"+count);
             try {
