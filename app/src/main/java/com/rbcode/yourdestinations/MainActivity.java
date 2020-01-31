@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent;
                 intent = new Intent(MainActivity.this, MapsActivity.class);
-                intent.putExtra("mode","car");
+                intent.putExtra("mode","park");
                 startActivity(intent);
                 alertDialog.dismiss();
             }
@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void populate_list(){
         adapter.clear();
-        String count = mPrefs.getString("count","0");
+        String count = mPrefs.getString("count","0"); //0
         JSONObject array = new JSONObject();
         try {
             array = new JSONObject(mPrefs.getString("mode","error"));
@@ -275,6 +275,19 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        String park = mPrefs.getString("park","none");
+        if(park.equals("none"))
+            return;
+        else {
+            try {
+                array = new JSONObject(mPrefs.getString("park",""));
+                adapter.add(new SavedPlace(array));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
 

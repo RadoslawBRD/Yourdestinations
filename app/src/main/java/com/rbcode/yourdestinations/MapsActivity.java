@@ -1,6 +1,7 @@
 package com.rbcode.yourdestinations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -137,7 +138,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 .zoom(16f)
                                 .build()));
                 break;
-            }case "car":{
+            }case "park":{
                 double la,lo;
                 la=location.getLatitude();
                 lo=location.getLongitude();
@@ -151,7 +152,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 .build()));
                 break;
             }default:{
-                Toast.makeText(this, "Error, mail it to dev(E01)"+mode, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error, mail it to dev(E01) "+mode, Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -204,24 +205,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //
         switch (mode){
             case "park":{
-                save_to_memory(adresy,"@string/choice_park");
+                Log.d(TAG, "onSave: "+mode);
+                save_to_memory(adresy, getString(R.string.choice_park));
+                break;
             }
             case "map":{
-                pop_up_name(adresy);
+                Log.d(TAG, "onSave: "+mode);
 
+                pop_up_name(adresy);
+                break;
             }
             case "place":{
+                Log.d(TAG, "onSave: "+mode);
+
                 pop_up_name(adresy);
+                break;
             }
+            default:
+                Log.d(TAG, "onSave: fail"+mode);
+                break;
         }
 
 
-          Log.d(TAG, "onSave: "+adresy.get(0).getThoroughfare());
+        //  Log.d(TAG, "onSave: "+adresy.get(0).getThoroughfare());
 //        Log.d(TAG, "onSave: "+adresy.get(0).getFeatureName());
 //        Log.d(TAG, "onSave: "+adresy.get(0).getLocality());
 //        Log.d(TAG, "onSave: "+adresy.get(0).getAddressLine(0));
 //
-        pop_up_name(adresy);
+        // pop_up_name(adresy);
 
 
     }
@@ -307,8 +318,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
 
-        if (nazwa == "park") {
+        if (nazwa.equals(getString(R.string.choice_park))) {
             SharedPreferences.Editor editor = mPrefs.edit();
+
             editor.putString("park", jplace.toString()); //put new place
 
 
