@@ -37,6 +37,7 @@ import static android.content.ContentValues.TAG;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     String mode;
+    String layout;
     //getPreferences(MODE_PRIVATE);
     SharedPreferences mPrefs,oPerfs;
     ArrayList<SavedPlace> arrayList = new ArrayList<SavedPlace>();
@@ -50,12 +51,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPrefs = getSharedPreferences("test",MODE_PRIVATE);
+        oPerfs = getSharedPreferences("options",MODE_PRIVATE);
+
+        layout = oPerfs.getString("layout","light");
+        Log.d(TAG, "onCreate: "+layout);
+        if(layout.equals("dark")) {
+            setTheme(R.style.Theme_AppCompat_DayNight_NoActionBar);
+            //theme.applyStyle(R.style.Theme_AppCompat_DayNight_NoActionBar, true);
+            Log.d(TAG, "onCreate: in dark");
+        }
+        else {
+            setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
+
+            //theme.applyStyle(R.style.Theme_AppCompat_Light_NoActionBar, true);
+            Log.d(TAG, "onCreate: in light");
+        }
         setContentView(R.layout.activity_main);
 
         //mPrefs = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
         adapter = new ListViewAdapter(this, arrayList);
-        mPrefs = getSharedPreferences("test",MODE_PRIVATE);
-        oPerfs = getSharedPreferences("options",MODE_PRIVATE);
+
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
@@ -135,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {//Anulowane
                                  }
                         });
-                        alert.show(); //todo on cancel-zamknij okno
+                        alert.show();
 
                         alertDialog.dismiss();
                     }
@@ -170,12 +186,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Options.class);
         startActivity(intent);
         // startActivityforResult
-
+        finish();
         Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
         return super.onOptionsItemSelected(item);
     }
 
     public void remove_from_shared(int id){
+        Log.d(TAG, "remove_from_shared: "+id);
         SharedPreferences.Editor editor = mPrefs.edit();
         //editor.putString(String.valueOf(id),"0"); //put new place
         editor.remove(String.valueOf(id));
@@ -205,6 +222,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(MainActivity.this, MapsActivity.class);
                 intent.putExtra("mode","map");
                 startActivity(intent);
+
                 alertDialog.dismiss();
             }
         });
