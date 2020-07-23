@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class Options extends AppCompatActivity {
 
     private static final String TAG = "Options";
-    Switch sLayout,sMode;
+    Switch sLayout,sMode,sMapMode;
     SharedPreferences mPrefs,oPerfs;
     SharedPreferences.Editor editor;
     String layout;
@@ -42,6 +42,7 @@ public class Options extends AppCompatActivity {
 
         sLayout= findViewById(R.id.switch1);
         sMode= findViewById(R.id.switch2);
+        sMapMode = findViewById(R.id.switch4);
 
         mPrefs = getSharedPreferences("test",MODE_PRIVATE);
 
@@ -49,6 +50,8 @@ public class Options extends AppCompatActivity {
             sLayout.setChecked(true);
         if(oPerfs.getString("mode","lead").equals("directions"))
             sMode.setChecked(true);
+        if(oPerfs.getString("mapMode","road").equals("satelite"))
+            sMapMode.setChecked(true);
 
         editor = oPerfs.edit();
 
@@ -76,6 +79,15 @@ public class Options extends AppCompatActivity {
                     editor.putString("mode","directions");
                 if(!isChecked)
                     editor.putString("mode","lead");
+            }
+        });
+        sMapMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                    editor.putString("mapMode","satelite");
+                if(!isChecked)
+                    editor.putString("mapMode","road");
             }
         });
     }

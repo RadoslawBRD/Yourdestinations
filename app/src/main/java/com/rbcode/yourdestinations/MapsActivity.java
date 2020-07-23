@@ -69,6 +69,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static final int PERMISSIONS_REQUEST_ENABLE_GPS=9002;
     LatLng FromSearchBar;
     String mode = "map";
+    String mapMode= "road";
     Location location;
     SharedPreferences mPrefs;
 
@@ -77,7 +78,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         Intent intent = getIntent();
+
         mode = intent.getStringExtra("mode");
+        mapMode = intent.getStringExtra("mapMpde");
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -165,6 +168,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.d(TAG, "onMapReady: in map ready");
 
         mMap = googleMap;
+        if(mapMode.equals("satelite"))
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        if(mapMode.equals("road"))
+            mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -386,6 +394,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final AlertDialog alert= builder.create();
         alert.show();
     }
+    
     public boolean isMapsEnabled(){
         final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if(!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
@@ -401,6 +410,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ==PackageManager.PERMISSION_GRANTED){
             mLocationPermissionGranted=true;
         }else {
+            Log.d(TAG, "getLocationPermission: 1");
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
