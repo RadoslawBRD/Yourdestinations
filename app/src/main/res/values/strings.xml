@@ -13,14 +13,16 @@
     <string name="settings">Settings</string>
     <string name="edit_name">Edit</string>
     <string name="set_lay">Layout</string>
-    <string name="dark">Dark</string>
-    <string name="light">Light</string>
+    <string name="dark">Contolled by night mode</string>
+    <string name="light">Always Light</string>
     <string name ="after_choose">After choosing address</string>
     <string name="navigation">Navigate</string>
     <string name="directions">Directions</string>
     <string name="choice_map">From map</string>
     <string name="choice_here">This position</string>
     <string name ="choice_park">Parked here</string>
-
+    <string name = "satelite_map_mode">Satelite</string>
+    <string name = "street_map_mode">Road map</string>
+    <string name ="map_mode_label">Map mode</string>
 
 </resources>
