@@ -14,14 +14,18 @@
     <string name="settings">Ustawienia</string>
     <string name="edit_name">Edytuj</string>
     <string name="set_lay">Skórka</string>
-    <string name="dark">Ciemna</string>
-    <string name="light">Jasna</string>
+    <string name="dark">Sterowane trybem nocnym</string>
+    <string name="light">Zawsze jasna</string>
     <string name ="after_choose">Po wybraniu adresu</string>
     <string name="navigation">Nawiguj</string>
     <string name="directions">Pokaż trase</string>
     <string name="choice_map">Z mapy</string>
     <string name="choice_here">Ta pozycja</string>
     <string name ="choice_park">Tu zaparkowałem</string>
+    <string name = "satelite_map_mode">Satelita</string>
+    <string name = "street_map_mode">Mapa drogowa</string>
+    <string name ="map_mode_label">Tryb mapy</string>
+
 
 
 
